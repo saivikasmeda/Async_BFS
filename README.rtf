@@ -1,0 +1,76 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fnil\fcharset0 HelveticaNeue;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0\c85000;\csgenericrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww23360\viewh14940\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf0 This is group project
+\fs24 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b \cf0 Group Members
+\f0\b0 \
+
+\f1\b\fs28 Saivikas Meda 
+\f0\b0          - SXM190011\
+
+\f1\b Sreekar Singareddy 
+\f0\b0 - SXS190008\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \
+\
+Download Async_BFS.zip folder and change the working directory to src folder using command 
+\f1\b "cd Async_BFS/src"
+\f0\b0 .\
+\
+Java version - 1.7\
+Compile all java files run command 
+\f1\b Javac *.java 
+\f0\b0 \
+To execute run command 		   
+\f1\b java Main Distributed-Luby-MIS/Program/input.txt
+\f0\b0 \
+\
+\pard\tx593\pardeftab593\pardirnatural\partightenfactor0
+
+\f2\fs56 \cf2 \cb3 Async_BFS
+\f3\fs24 \
+
+\f2\fs28 This algorithm develops Asynchronous BFS tree and complete total no. of message that are board-cast by the process in the acheiving on a distributed network. The distributed network is simulated by using multithreading concepts. Each thread would represent one process in the network. Messages are sent using IPC (Inter Process Communication) concepts using multithreading for quicker delivery to the neighbor processes.
+\f3\fs24 \
+\
+
+\f4\b Main.java
+\f3\b0 \
+This is the starting of the project. This Java class contains Main method where we create DSystem object and trigger configure method (here we are the data from input.txt file and created node objects for each process) and execute round method( this method created thread and assign it to each process).\
+
+\f4\b \
+DSystem.Java
+\f3\b0 \
+This is a global class where we read the data from the input file and create node objects and their neighbor connections. This class creates individual thread for each node and execute round. The final output is displayed from this class that displays total no. of messages and BFS tree.\
+\
+
+\f4\b Node.java\
+
+\f3\b0 In this class each process will run in a loop continuously until it\'92s status has changed to \'93DONE\'94 initially the status will be \'93READY\'94. Each node will send message to it\'92s neighbors based on the scenario, sends ACK / Done for Parent, Explore message for neighbors (Excluding parent process) and send NACK message for neighbors if distance to root is bigger for that process. Each process will read the explore message and update this distance to root with minimum.\
+\
+
+\f4\b Message.java\
+
+\f3\b0 This class is used to create the message objects that stores sender node , receiver node, data and type of the message ( Nack, ACK, DONE, READY).\
+\
+
+\f4\b Channel.java\
+
+\f3\b0 Channel class is used to transfer the message between sender to receiver nodes. The message delay is implemented in Channel objects. Once the delay as been elapsed the message will be delivered to the receiver message queue which is in shared memory location(DSystem.class).\
+\
+\
+\
+
+\f4\b ##
+\f3\b0  Once the child nodes send Done and neighbors send NACK message the process will change it\'92s status to Done and forward a Done message to it\'92s parent process. When all processes status changed to Done the Algorithm will terminate and displays the No. Of messages and BFS tree.\
+}
