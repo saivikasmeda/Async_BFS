@@ -29,14 +29,13 @@ public class Node implements Callable<Integer> {
             int result = startAsyBFSAlgorithm();
             return result;
         } catch (Exception e) {
-//            Printer.debug(TAG,String.format("P%s round failed. Exception: %s", nodeIndex, e.getMessage()));
+            System.out.println("Failure occured while executing BFS_Algorithm for process "+ this.UID);
             e.printStackTrace();
             return -1;
         }
     }
 
     private int startAsyBFSAlgorithm() throws Exception {
-//        while(nodeStatus != Message.MessageType.DONE || DSystem.channelMessages.get(this.nodeIndex).size() != 0 ) {
         synchronized (DSystem.rootNode){
             rootNode = DSystem.rootNode;
         }
@@ -159,7 +158,7 @@ public class Node implements Callable<Integer> {
 
 
     public void setProcessPosition(){
-        if (doneNeighbours.size() != 0) this.position = "Middle Node";
+        if (doneNeighbours.size() != 0) this.position = "Non-leaf Node";
         else this.position = "leaf Node";
     }
 

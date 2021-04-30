@@ -35,19 +35,19 @@ public class DSystem {
         }
 
         if (lines.size() == 0) {
-//            Printer.error(TAG, "File is empty. Please provide valid file.");
+            System.out.println("File is empty. Please provide valid file.");
             return;
         }
 
         n = Integer.parseInt(lines.get(0));
         if (lines.size() != n+3) {
-//            Printer.error(TAG, "Invalid configuration file. Please provide valid config file.");
+            System.out.println("Invalid configuration file. Please provide valid config file.");
             return;
         }
 
         ids = lines.get(1).split(" +");
         if (ids.length != n) {
-//            Printer.error(TAG, "Number of IDs in the config file does not match the number of processes.");
+            System.out.println("Number of IDs in the config file does not match the number of processes.");
             return;
         }
         int rootId = Integer.parseInt(lines.get(2));
@@ -94,7 +94,7 @@ public class DSystem {
             if (101 <= result.get() && result.get() <= 108) successfulProcesses++;
         }
         if (successfulProcesses != n)  {
-//            Printer.error(TAG, "Round failed. Aborting system.");
+           System.out.println("Round failed. Aborting system.");
         }else{
             System.out.println("No of messages Boardcasted: " + messageCount);
         }
